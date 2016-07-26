@@ -1,2 +1,3 @@
 :api_key: YOUR_API_KEY
 :request_count: 50
+:dir_name: output

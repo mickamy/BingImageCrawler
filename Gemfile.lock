@@ -1,12 +1,14 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    open_uri_redirections (0.2.1)
     searchbing (0.2.6)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  open_uri_redirections
   searchbing (~> 0.2.4)
 
 RUBY VERSION
