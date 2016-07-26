@@ -1,0 +1,16 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    searchbing (0.2.6)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  searchbing (~> 0.2.4)
+
+RUBY VERSION
+   ruby 2.2.4p230
+
+BUNDLED WITH
+   1.12.5
