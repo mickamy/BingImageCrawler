@@ -6,25 +6,37 @@ require 'FileUtils'
 
 def save_image(url, dir_name)
 	filename = File.basename(url)
-	open(dir_name + '/' + filename.to_s, 'wb') do |file|
+  path = dir_name + '/' + filename.to_s
+	open(path, 'wb') do |file|
     begin
       open(url, allow_redirections: :all) do |data|
         file.write(data.read)
+        puts "Saved #{url}"
       end
     rescue OpenURI::HTTPError => e
       puts "Couldn't get a image #{url} cause = #{e}"
+      FileUtils.rm(file.path)
     end
   end
 end
 
 config = YAML.load_file('config.yml')
 dir_name = config[:dir_name]
+request_limit = config[:request_limit]
+request_times = config[:request_times]
 
 FileUtils.mkdir_p(dir_name) unless FileTest.exist?(dir_name)
+bing = Bing.new(config[:api_key], request_limit, 'Image')
 
-bing = Bing.new(config[:api_key], config[:request_count], 'Image')
-results = bing.search('clothing laundry tag')
+request_times.times do |count|
+  offset = count * request_limit
+  results = bing.search('clothing laundry tag', offset)
 
-results[0][:Image].each do |result|
-  save_image(result[:MediaUrl], dir_name)
+  results[0][:Image].each do |result|
+    save_image(result[:MediaUrl], dir_name)
+  end
 end
+
+puts '-' * 20
+puts 'Finish!'
+puts "Saved #{request_times * request_limit}"
