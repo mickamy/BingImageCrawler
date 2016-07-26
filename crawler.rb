@@ -4,6 +4,8 @@ require 'open-uri'
 require 'open_uri_redirections'
 require 'FileUtils'
 
+saved_image_count = 0
+
 def save_image(url, dir_name)
 	filename = File.basename(url)
   path = dir_name + '/' + filename.to_s
@@ -12,6 +14,7 @@ def save_image(url, dir_name)
       open(url, allow_redirections: :all) do |data|
         file.write(data.read)
         puts "Saved #{url}"
+        save_image_count += 1
       end
     rescue OpenURI::HTTPError => e
       puts "Couldn't get a image #{url} cause = #{e}"
@@ -39,4 +42,4 @@ end
 
 puts '-' * 20
 puts 'Finish!'
-puts "Saved #{request_times * request_limit}"
+puts "Saved #{saved_image_count}} images!"
