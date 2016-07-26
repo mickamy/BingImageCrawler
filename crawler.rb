@@ -7,8 +7,12 @@ require 'FileUtils'
 def save_image(url, dir_name)
 	filename = File.basename(url)
 	open(dir_name + '/' + filename.to_s, 'wb') do |file|
-    open(url, allow_redirections: :all) do |data|
-      file.write(data.read)
+    begin
+      open(url, allow_redirections: :all) do |data|
+        file.write(data.read)
+      end
+    rescue OpenURI::HTTPError => e
+      puts "Couldn't get a image #{url} cause = #{e}"
     end
   end
 end
@@ -22,6 +26,5 @@ bing = Bing.new(config[:api_key], config[:request_count], 'Image')
 results = bing.search('clothing laundry tag')
 
 results[0][:Image].each do |result|
-  puts result[:MediaUrl]
   save_image(result[:MediaUrl], dir_name)
 end
