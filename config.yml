@@ -1,4 +1,4 @@
 :api_key: YOUR_API_KEY
-:dir_name: output
+# Total transaction would be `request_limit * request_times`
 :request_limit: 50
 :request_times: 10

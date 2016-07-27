@@ -3,6 +3,7 @@ require 'yaml'
 require 'open-uri'
 require 'open_uri_redirections'
 require 'FileUtils'
+require 'date'
 
 saved_image_count = 0
 
@@ -24,9 +25,11 @@ def save_image(url, dir_name)
 end
 
 config = YAML.load_file('config.yml')
-dir_name = config[:dir_name]
 request_limit = config[:request_limit]
 request_times = config[:request_times]
+
+date = DateTime.now.strftime('%Y%m%d%H%M%S')
+dir_name = "output_#{date}"
 
 FileUtils.mkdir_p(dir_name) unless FileTest.exist?(dir_name)
 bing = Bing.new(config[:api_key], request_limit, 'Image')
