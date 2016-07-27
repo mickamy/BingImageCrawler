@@ -27,9 +27,10 @@ end
 config = YAML.load_file('config.yml')
 request_limit = config[:request_limit]
 request_times = config[:request_times]
+query_keyword = config[:query_keyword]
 
 date = DateTime.now.strftime('%Y%m%d%H%M%S')
-dir_name = "output_#{date}"
+dir_name = "output_#{query_keyword}_#{date}"
 
 FileUtils.mkdir_p(dir_name) unless FileTest.exist?(dir_name)
 bing = Bing.new(config[:api_key], request_limit, 'Image')
@@ -38,7 +39,7 @@ saved_count = 0
 
 request_times.times do |count|
   offset = count * request_limit
-  results = bing.search(config[:query_keyword], offset)
+  results = bing.search(query_keyword, offset)
 
   results[0][:Image].each do |result|
     if save_image(result[:MediaUrl], dir_name)
