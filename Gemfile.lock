@@ -9,7 +9,7 @@ PLATFORMS
 
 DEPENDENCIES
   open_uri_redirections
-  searchbing (~> 0.2.4)
+  searchbing (~> 0.2.6)
 
 RUBY VERSION
    ruby 2.2.4p230
