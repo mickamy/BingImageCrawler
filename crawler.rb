@@ -24,10 +24,12 @@ def save_image(url, dir_name)
   success
 end
 
+puts 'Put query keyword: '
+query_keyword = gets
+
 config = YAML.load_file('config.yml')
 request_limit = config[:request_limit]
 request_times = config[:request_times]
-query_keyword = config[:query_keyword]
 
 date = DateTime.now.strftime('%Y%m%d%H%M%S')
 dir_name = "output_#{query_keyword.gsub(' ', '_')}_#{date}"
