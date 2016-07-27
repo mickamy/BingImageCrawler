@@ -38,7 +38,7 @@ saved_count = 0
 
 request_times.times do |count|
   offset = count * request_limit
-  results = bing.search('clothing laundry tag', offset)
+  results = bing.search(config[:query_keyword], offset)
 
   results[0][:Image].each do |result|
     if save_image(result[:MediaUrl], dir_name)
