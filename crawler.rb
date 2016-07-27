@@ -24,8 +24,8 @@ def save_image(url, dir_name)
   success
 end
 
-puts 'Put query keyword: '
-query_keyword = gets
+print 'Put query keyword: '
+query_keyword = gets.gsub("\n", '')
 
 config = YAML.load_file('config.yml')
 request_limit = config[:request_limit]
