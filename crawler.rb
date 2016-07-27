@@ -16,7 +16,7 @@ def save_image(url, dir_name)
         puts "Saved #{url}"
         success = true
       end
-    rescue OpenURI::HTTPError => e
+    rescue => e
       puts "Couldn't get a image #{url} cause = #{e}"
       FileUtils.rm(file.path)
     end
