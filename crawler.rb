@@ -30,10 +30,10 @@ request_times = config[:request_times]
 query_keyword = config[:query_keyword]
 
 date = DateTime.now.strftime('%Y%m%d%H%M%S')
-dir_name = "output_#{query_keyword}_#{date}"
+dir_name = "output_#{query_keyword.gsub(' ', '_')}_#{date}"
 
 FileUtils.mkdir_p(dir_name) unless FileTest.exist?(dir_name)
-bing = Bing.new(config[:api_key], request_limit, 'Image')
+bing = Bing.new(config[:api_key], request_limit, 'Image', 'ImageFilters': 'Style:Photo')
 
 saved_count = 0
 
