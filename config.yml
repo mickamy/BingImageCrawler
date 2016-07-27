@@ -2,4 +2,4 @@
 # Total transaction would be `request_limit * request_times`
 :request_limit: 50
 :request_times: 10
-:query_keyword: 'clothing laundry tag'
+:query_keyword: 'QUERY KEYWORD TO SEARCH'

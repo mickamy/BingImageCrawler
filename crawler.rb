@@ -49,4 +49,4 @@ end
 
 puts '-' * 20
 puts 'Finish!'
-puts "Saved #{saved_count}} images!"
+puts "Saved #{saved_count} images!"
